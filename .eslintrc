@@ -10,8 +10,7 @@
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
-    "plugin:prettier/recommended",
-    "plugin:cypress/recommended"
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -19,10 +18,10 @@
       "jsx": true
     },
     "ecmaVersion": 2018,
-    "project": ["./tsconfig.json", "./cypress/tsconfig.json"],
+    "project": ["./tsconfig.json"],
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "jest", "cypress"],
+  "plugins": ["react", "@typescript-eslint", "jest"],
   "rules": {
     "@typescript-eslint/camelcase": "off",
     "jest/expect-expect": "off",
