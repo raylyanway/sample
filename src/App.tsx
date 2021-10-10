@@ -3,17 +3,22 @@ import logo from "./logo.svg";
 import useFetch from "./hooks/use-fetch";
 import "./App.css";
 
-type Cat = {
+type Axolotl = {
   url: string;
   facts: string;
   pics_repo: string;
   api_repo: string;
 };
 
+const urls = [
+  "https://axoltlapi.herokuapp.com",
+  "https://axoltlapi.herokuapp.com",
+  "https://axoltlapi.herokuapp.com",
+  "https://axoltlapi.herokuapp.com/1",
+];
+
 function App(): JSX.Element {
-  const { request, data, loading, error, badRequestStatus } = useFetch<Cat>(
-    "https://axoltlapi.herokuapp.com"
-  );
+  const { request, data, loading, error } = useFetch<Axolotl>(urls);
 
   useEffect(() => {
     request();
@@ -29,10 +34,18 @@ function App(): JSX.Element {
             Please try again later.
           </p>
         )}
-        {badRequestStatus && <p>Ошибка HTTP: {badRequestStatus}</p>}
+        {data?.map((item) => {
+          if (item.ok) {
+            return (
+              <>
+                <img src={item.data?.url} className="App-logo" alt="logo" />
+                <p>{item.data?.facts}</p>
+              </>
+            );
+          }
+          return <p>Ошибка HTTP: {item.status}</p>;
+        })}
         {loading && <img src={logo} className="App-logo" alt="logo" />}
-        {data && <img src={data?.url} className="App-logo" alt="logo" />}
-        {data && <p>data.facts</p>}
       </header>
     </div>
   );

@@ -1,40 +1,58 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+type Data<T> = {
+  error?: unknown;
+  data?: T;
+  status?: number;
+  ok?: boolean;
+}[];
+
 const useFetch = <T>(
-  url: string
+  urls: string | string[]
 ): {
   request: () => Promise<void>;
-  data: T | undefined;
+  data: Data<T> | undefined;
   loading: boolean;
   error: boolean;
-  badRequestStatus: number | undefined;
 } => {
   const mounted = useRef(false);
   const controller = useRef(new AbortController());
-  const [data, setData] = useState<T>();
+  const [data, setData] = useState<Data<T>>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [badRequestStatus, setBadRequestStatus] = useState<number>();
 
   const request = useCallback(async () => {
+    const fetchUrls: string[] = Array.isArray(urls) ? urls : [urls];
+
     try {
+      setError(false);
       setLoading(true);
 
-      const res = await fetch("http://localhost:5000", {
-        signal: controller.current.signal,
-        headers: {
-          "Target-URL": url,
-        },
-      });
+      const requests = fetchUrls.map((url) =>
+        fetch("http://localhost:5000", {
+          signal: controller.current.signal,
+          headers: {
+            "Target-URL": url,
+          },
+        })
+      );
 
-      if (res.ok) {
-        const json: T = await res.json();
-        setData(json);
-      } else {
-        setBadRequestStatus(res.status);
-        // eslint-disable-next-line no-console
-        console.error(`Ошибка HTTP: ${res.status}`);
-      }
+      const responses = await Promise.allSettled(requests);
+
+      const responsesData = Promise.all(
+        responses.map(async (response) => {
+          if (response.status === "fulfilled") {
+            return {
+              data: await response.value.json(),
+              status: response.value.status,
+              ok: response.value.ok,
+            };
+          }
+          return { error: response.reason };
+        })
+      );
+
+      setData(await responsesData);
     } catch (e) {
       if (!mounted.current) {
         return;
@@ -46,7 +64,7 @@ const useFetch = <T>(
     } finally {
       setLoading(false);
     }
-  }, [url]);
+  }, [urls]);
 
   useEffect(() => {
     mounted.current = true;
@@ -63,7 +81,6 @@ const useFetch = <T>(
     data,
     loading,
     error,
-    badRequestStatus,
   };
 };
 
