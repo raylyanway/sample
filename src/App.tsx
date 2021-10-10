@@ -11,7 +11,7 @@ type Cat = {
 };
 
 function App(): JSX.Element {
-  const { request, data, loading } = useFetch<Cat>(
+  const { request, data, loading, error, badRequestStatus } = useFetch<Cat>(
     "https://axoltlapi.herokuapp.com"
   );
 
@@ -22,12 +22,17 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <header className="App-header">
-        {loading ? (
-          <img src={logo} className="App-logo" alt="logo" />
-        ) : (
-          <img src={data?.url} className="App-logo" alt="logo" />
+        {error && (
+          <p>
+            Something is wrong.
+            <br />
+            Please try again later.
+          </p>
         )}
-        <p>{data && data.facts}</p>
+        {badRequestStatus && <p>Ошибка HTTP: {badRequestStatus}</p>}
+        {loading && <img src={logo} className="App-logo" alt="logo" />}
+        {data && <img src={data?.url} className="App-logo" alt="logo" />}
+        {data && <p>data.facts</p>}
       </header>
     </div>
   );
