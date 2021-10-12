@@ -7,11 +7,11 @@ type Props = {
 
 const ErrorPage: React.FC<Props> = ({ show }) =>
   show ? (
-    <p className="error-page">
+    <div className="error-page">
       Something is wrong.
       <br />
       Please try again later.
-    </p>
+    </div>
   ) : null;
 
 export default ErrorPage;

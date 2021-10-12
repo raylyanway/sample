@@ -1,5 +1,5 @@
 .loader {
-  height: 20vmin;
+  height: calc(100vh - 7rem);
   pointer-events: none;
   width: 20vmin;
 }
@@ -16,5 +16,11 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .loader {
+    height: calc(100vh - 2rem);
   }
 }

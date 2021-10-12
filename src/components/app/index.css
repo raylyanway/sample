@@ -106,16 +106,15 @@ body::-webkit-scrollbar-thumb {
 }
 
 main {
-  height: calc(100vh - 7rem);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 0;
+  margin-bottom: 5rem;
   padding: 1rem;
   transition: margin-left 200ms ease;
 }
 
-/* Large screens */
 @media only screen and (min-width: 600px) {
   .app__nav {
     top: 0;
@@ -146,6 +145,6 @@ main {
 
   main {
     margin-left: 5rem;
-    height: calc(100vh - 2rem);
+    margin-bottom: 0;
   }
 }
