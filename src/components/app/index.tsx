@@ -6,8 +6,8 @@ import "./index.css";
 export default function App(): JSX.Element {
   return (
     <Router>
-      <nav className="app">
-        <ul className="app__nav">
+      <nav className="app__nav">
+        <ul className="app__ul">
           <li className="app__logo">
             <Link to="/" className="app__link">
               <span className="app__text">Home</span>
@@ -61,7 +61,7 @@ export default function App(): JSX.Element {
         </ul>
       </nav>
 
-      <main className="app__main">
+      <main>
         <Switch>
           <Route path="/images">
             <ImagesPage />
