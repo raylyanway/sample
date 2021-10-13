@@ -24,10 +24,16 @@ const ImagesPage: React.FC = () => {
 
   return (
     <div className="images-page">
-      {data &&
+      {data.length > 0 &&
         data.map((item) => {
           if (item.ok) {
-            return <Picture text={item.data.facts} url={item.data.url} />;
+            return (
+              <Picture
+                text={item.data.facts}
+                url={item.data.url}
+                key={item.data.url}
+              />
+            );
           }
           return null;
         })}
