@@ -1,0 +1,12 @@
+.home-page {
+  align-items: center;
+  display: flex;
+  font-size: 3rem;
+  height: calc(100vh - 7rem);
+}
+
+@media only screen and (min-width: 600px) {
+  .home-page {
+    height: calc(100vh - 2rem);
+  }
+}
