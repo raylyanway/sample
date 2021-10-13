@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ImagesPage from "../../pages/images";
 import VideoPage from "../../pages/video";
+import HomePage from "../../pages/home";
 import "./index.css";
 
 const App: React.FC = () => (
@@ -70,8 +71,7 @@ const App: React.FC = () => (
           <VideoPage />
         </Route>
         <Route path="/">
-          <h1>Home</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+          <HomePage />
         </Route>
       </Switch>
     </main>
