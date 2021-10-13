@@ -4,7 +4,7 @@ import "./index.css";
 
 const HomePage: React.FC = () => (
   <div className="home-page">
-    <h1>Welcome to the test application.</h1>
+    <h2>Welcome to the test application.</h2>
   </div>
 );
 

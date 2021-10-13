@@ -12,13 +12,13 @@
   },
   "scripts": {
     "start:server": "cd server && ts-node-dev --respawn --transpile-only ./index.ts && wait-on tcp:5000",
-    "start:app": "react-scripts start",
+    "start:app": "react-scripts -r @cypress/instrument-cra start",
     "start": "run-p --race start:server start:app",
     "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
+    "test": "cypress run",
     "eject": "react-scripts eject",
-    "cypress:run": "start-server-and-test start http://localhost:3000 \"cypress run\"",
-    "cypress:open": "start-server-and-test start http://localhost:3000 \"cypress open\"",
+    "cypress:run": "start-server-and-test \"BROWSER=none yarn start\" 3000",
+    "cypress:open": "start-server-and-test 3000 \"cypress open\"",
     "prepare": "husky install",
     "pre-commit-lint": "yarn lint-staged"
   },
@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@cypress/instrument-cra": "^1.4.0",
     "@testing-library/cypress": "^8.0.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
