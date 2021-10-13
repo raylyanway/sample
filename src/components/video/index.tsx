@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import useClickOutside from "../../hooks/use-click-outside";
+import Modal from "../modal";
+
 import "./index.css";
 
 type Props = {
@@ -15,9 +18,18 @@ const Video: React.FC<Props> = ({ text, link, name, img }) => {
   const modifiedLink = `https://www.youtube.com/embed/${vParam}?autoplay=1&mute=1`;
 
   const [show, setShow] = useState(false);
+  const modalContainer = useRef<HTMLDivElement>(null);
+
+  useClickOutside(modalContainer, () => {
+    setShow(false);
+  });
 
   const handleButtonClick = () => {
-    setShow((prev) => !prev);
+    setShow(true);
+  };
+
+  const handleModalClose = () => {
+    setShow(false);
   };
 
   return (
@@ -27,9 +39,15 @@ const Video: React.FC<Props> = ({ text, link, name, img }) => {
       <button type="button" onClick={handleButtonClick}>
         Watch
       </button>
-      {show && (
-        <iframe title={name} width="420" height="315" src={modifiedLink} />
-      )}
+      <Modal
+        onClose={handleModalClose}
+        open={show}
+        title={name}
+        ref={modalContainer}
+        content={
+          <iframe title={name} width="100%" height="315" src={modifiedLink} />
+        }
+      />
     </div>
   );
 };
