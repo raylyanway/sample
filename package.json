@@ -15,7 +15,7 @@
     "start:app": "react-scripts start",
     "start": "run-p --race start:server start:app",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
