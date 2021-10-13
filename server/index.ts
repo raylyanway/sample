@@ -36,7 +36,7 @@ app.all("*", (req, res, next) => {
     if (/https?/gi.test(targetURL)) {
       request(
         {
-          url: targetURL + req.url,
+          url: targetURL,
           method: req.method,
           json: req.body,
           headers: { Authorization: req.header("Authorization") },
