@@ -1,23 +1,22 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type Data<T> = {
-  error?: unknown;
-  data?: T;
-  status?: number;
-  ok?: boolean;
+  data: T;
+  status: number;
+  ok: boolean;
 }[];
 
 const useFetch = <T>(
   urls: string | string[]
 ): {
   request: () => Promise<void>;
-  data: Data<T> | undefined;
+  data: Data<T>;
   loading: boolean;
   error: boolean;
 } => {
   const mounted = useRef(false);
   const controller = useRef(new AbortController());
-  const [data, setData] = useState<Data<T>>();
+  const [data, setData] = useState<Data<T>>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -39,20 +38,22 @@ const useFetch = <T>(
 
       const responses = await Promise.allSettled(requests);
 
-      const responsesData = Promise.all(
-        responses.map(async (response) => {
-          if (response.status === "fulfilled") {
-            return {
-              data: await response.value.json(),
-              status: response.value.status,
-              ok: response.value.ok,
-            };
-          }
-          return { error: response.reason };
-        })
+      const responsesData = await Promise.all(
+        responses
+          .map(async (response) => {
+            if (response.status === "fulfilled") {
+              return {
+                data: await response.value.json(),
+                status: response.value.status,
+                ok: response.value.ok,
+              };
+            }
+            return false;
+          })
+          .filter(Boolean)
       );
 
-      setData(await responsesData);
+      setData(responsesData as Data<T>);
     } catch (e) {
       if (!mounted.current) {
         return;

@@ -1,0 +1,14 @@
+.picture {
+  padding: 1rem;
+  text-align: center;
+  width: 20rem;
+}
+
+.picture__img {
+  height: 20rem;
+  width: 20rem;
+}
+
+.picture__text {
+  font-family: cursive;
+}

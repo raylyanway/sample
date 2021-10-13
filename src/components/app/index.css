@@ -1,0 +1,149 @@
+:root {
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+  --transition-speed: 600ms;
+  font-family: "Open Sans";
+  font-size: 16px;
+}
+
+body {
+  background-color: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+.app__nav {
+  background-color: var(--bg-primary);
+  bottom: 0;
+  height: 5rem;
+  position: fixed;
+  transition: width 100ms ease;
+  width: 100vw;
+}
+
+.app__ul {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app__item {
+  width: 100%;
+}
+
+.app__link {
+  align-items: center;
+  color: var(--text-primary);
+  display: flex;
+  filter: grayscale(100%) opacity(0.7);
+  font-family: Open-Sans;
+  font-size: 2rem;
+  height: 5rem;
+  justify-content: center;
+  text-decoration: none;
+  transition: var(--transition-speed);
+}
+
+.app__link:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  filter: grayscale(0%) opacity(1);
+}
+
+.app__text {
+  display: none;
+  margin-left: 1rem;
+}
+
+.app__link svg {
+  margin: 0 1.5rem;
+  max-width: 2rem;
+  min-width: 2rem;
+}
+
+.app__icon {
+  color: #ff7eee;
+  transition: var(--transition-speed);
+}
+
+.app__logo {
+  background-color: var(--text-secondary);
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.3ch;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.app__logo svg {
+  transform: rotate(0deg);
+  transition: transform var(--transition-speed);
+}
+
+.app__nav:hover .app__logo svg {
+  transform: rotate(-180deg);
+}
+
+main {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+  margin-left: 0;
+  padding: 1rem;
+  transition: margin-left 100ms ease;
+}
+
+@media only screen and (min-width: 600px) {
+  .app__nav {
+    height: 100vh;
+    top: 0;
+    width: 5rem;
+  }
+
+  .app__ul {
+    flex-direction: column;
+  }
+
+  .app__link {
+    justify-content: start;
+  }
+
+  .app__nav:hover {
+    width: 16rem;
+  }
+
+  .app__nav:hover + main {
+    margin-left: 16rem;
+  }
+
+  .app__nav:hover .app__text {
+    display: inline;
+    transition: opacity var(--transition-speed);
+  }
+
+  main {
+    margin-bottom: 0;
+    margin-left: 5rem;
+  }
+}

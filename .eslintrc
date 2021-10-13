@@ -27,6 +27,8 @@
     "@typescript-eslint/camelcase": "off",
     "jest/expect-expect": "off",
     "jest/valid-expect": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
     "jest/valid-expect-in-promise": "off",
     "@typescript-eslint/no-unused-expressions": "off"
   }
