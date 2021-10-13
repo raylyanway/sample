@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ImagesPage from "../../pages/images";
+import VideoPage from "../../pages/video";
 import "./index.css";
 
 export default function App(): JSX.Element {
@@ -42,20 +43,20 @@ export default function App(): JSX.Element {
             </Link>
           </li>
           <li className="app__item">
-            <Link to="/about" className="app__link">
+            <Link to="/video" className="app__link">
               <svg
                 aria-hidden="true"
                 focusable="false"
                 className="app__icon"
                 role="img"
-                viewBox="0 0 512 512"
+                viewBox="0 0 576 512"
               >
                 <path
                   fill="currentColor"
-                  d="M290.59 192c-20.18 0-106.82 1.98-162.59 85.95V192c0-52.94-43.06-96-96-96-17.67 0-32 14.33-32 32s14.33 32 32 32c17.64 0 32 14.36 32 32v256c0 35.3 28.7 64 64 64h176c8.84 0 16-7.16 16-16v-16c0-17.67-14.33-32-32-32h-32l128-96v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V289.86c-10.29 2.67-20.89 4.54-32 4.54-61.81 0-113.52-44.05-125.41-102.4zM448 96h-64l-64-64v134.4c0 53.02 42.98 96 96 96s96-42.98 96-96V32l-64 64zm-72 80c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm80 0c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16z"
+                  d="M336.2 64H47.8C21.4 64 0 85.4 0 111.8v288.4C0 426.6 21.4 448 47.8 448h288.4c26.4 0 47.8-21.4 47.8-47.8V111.8c0-26.4-21.4-47.8-47.8-47.8zm189.4 37.7L416 177.3v157.4l109.6 75.5c21.2 14.6 50.4-.3 50.4-25.8V127.5c0-25.4-29.1-40.4-50.4-25.8z"
                 />
               </svg>
-              <span className="app__text">Cats</span>
+              <span className="app__text">Video</span>
             </Link>
           </li>
         </ul>
@@ -66,11 +67,8 @@ export default function App(): JSX.Element {
           <Route path="/images">
             <ImagesPage />
           </Route>
-          <Route path="/users">
-            <h1>Cold winter</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            </p>
+          <Route path="/video">
+            <VideoPage />
           </Route>
           <Route path="/">
             <h1>Home</h1>
