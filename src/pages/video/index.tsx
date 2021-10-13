@@ -35,14 +35,14 @@ const VideoPage: React.FC = () => {
     request();
   }, [request]);
 
-  console.log(111, data);
   return (
-    <div className="images-page">
+    <div className="video-page">
       {data.length > 0 &&
         data[0].ok &&
         data[0].data.map((item) => {
           return (
             <Video
+              key={item.src.id}
               link={item.src.id}
               text={item.text}
               name={item.name}
