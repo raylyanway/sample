@@ -17,8 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
+    "cypress:run": "start-server-and-test start http://localhost:3000 \"cypress run\"",
+    "cypress:open": "start-server-and-test start http://localhost:3000 \"cypress open\"",
     "prepare": "husky install",
     "pre-commit-lint": "yarn lint-staged"
   },
@@ -72,6 +72,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
     "react-scripts": "^4.0.3",
+    "start-server-and-test": "^1.14.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.3",
     "wait-on": "^6.0.0",
