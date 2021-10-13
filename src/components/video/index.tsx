@@ -34,8 +34,8 @@ const Video: React.FC<Props> = ({ text, link, name, img }) => {
 
   return (
     <div className="video">
-      <img alt="" src={img} className="video__img" />
-      <p className="video__text">{`${name} ${text}`}</p>
+      <img alt="" src={img} />
+      <p>{`${name} ${text}`}</p>
       <button type="button" onClick={handleButtonClick}>
         Watch
       </button>

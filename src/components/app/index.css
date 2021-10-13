@@ -29,8 +29,11 @@ body::-webkit-scrollbar-thumb {
 
 .app__nav {
   background-color: var(--bg-primary);
+  bottom: 0;
+  height: 5rem;
   position: fixed;
   transition: width 100ms ease;
+  width: 100vw;
 }
 
 .app__ul {
@@ -99,12 +102,6 @@ body::-webkit-scrollbar-thumb {
 
 .app__nav:hover .app__logo svg {
   transform: rotate(-180deg);
-}
-
-.app__nav {
-  bottom: 0;
-  height: 5rem;
-  width: 100vw;
 }
 
 main {

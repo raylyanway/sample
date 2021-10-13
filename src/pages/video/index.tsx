@@ -26,7 +26,7 @@ type Adrien = {
   lov: [];
 }[];
 
-const urls = ["https://openwhyd.org/adrien?format=json&limit=1"];
+const urls = ["https://openwhyd.org/adrien?format=json&limit=10"];
 
 const VideoPage: React.FC = () => {
   const { request, data, loading, error } = useFetch<Adrien>(urls);

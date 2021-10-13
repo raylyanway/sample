@@ -31,7 +31,7 @@ const ImagesPage: React.FC = () => {
               <Picture
                 text={item.data.facts}
                 url={item.data.url}
-                key={item.data.url}
+                key={item.data.url + item.data.facts}
               />
             );
           }
