@@ -9,7 +9,7 @@ type Props = {
 const Picture: React.FC<Props> = ({ text, url }) => (
   <div className="picture">
     <img alt="" src={url} className="picture__img" />
-    <p>{text}</p>
+    <p className="picture__text">{text || "no facts"}</p>
   </div>
 );
 
